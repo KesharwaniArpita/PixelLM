@@ -157,12 +157,14 @@ def main(args):
 
     # Create model
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        args.version,
-        cache_dir=None,
-        model_max_length=args.model_max_length,
-        padding_side="right",
-        use_fast=False,
-    )
+    args.version,
+    cache_dir=None,
+    model_max_length=args.model_max_length,
+    padding_side="right",
+    use_fast=False,
+    local_files_only=True,
+    trust_remote_code=True
+)
     tokenizer.pad_token = tokenizer.unk_token
 
     if args.seg_token_num*args.image_feature_scale_num == 1:
